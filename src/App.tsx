@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import http from "./http-common";
 
+// type tere = {
+//   class: string;
+//   confidence: number;
+// }
+
 function App() {
   const [currentImage, setCurrentImage] = useState<File>();
   const [progress, setProgress] = useState<number>(0);
   const [previewImage, setPreviewImage] = useState<string>("");
   const [message, setMessage] = useState<string>("");
+  // const [serverResposne, setServerResponse] = useState<tere>();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -15,25 +21,28 @@ function App() {
     setProgress(0);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  let data;
+
+  const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!currentImage) return;
     setProgress(0);
 
-    const onUploadProgress = (e: any) => {
-      setProgress(Math.round((100 * e.loaded) / e.total));
-    };
+    // const onUploadProgress = (e: any) => {
+    //   setProgress(Math.round((100 * e.loaded) / e.total));
+    // };
 
     let formData = new FormData();
     formData.append("file", currentImage);
 
-    http
+    data = await http
       .post("/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
-        onUploadProgress,
+        // onUploadProgress,
       })
+      .then((response) => {return response})
       .catch((err) => {
         console.log(err);
         if (err.response && err.response.data && err.response.data.message) {
@@ -84,6 +93,10 @@ function App() {
             <div className="" role="alert">
               {message}
             </div>
+          )}
+
+          {data && (
+            <div>{data}</div>
           )}
         </div>
     </main>
