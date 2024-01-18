@@ -18,7 +18,7 @@ function App() {
     const selectedFiles = e.target.files as FileList;
     setCurrentImage(selectedFiles?.[0]);
     setPreviewImage(URL.createObjectURL(selectedFiles?.[0]));
-    setProgress(0);
+    // setProgress(0);
   };
 
   let data;
@@ -26,7 +26,7 @@ function App() {
   const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!currentImage) return;
-    setProgress(0);
+    // setProgress(0);
 
     // const onUploadProgress = (e: any) => {
     //   setProgress(Math.round((100 * e.loaded) / e.total));
