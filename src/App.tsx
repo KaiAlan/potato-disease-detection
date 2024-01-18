@@ -8,7 +8,7 @@ import http from "./http-common";
 
 function App() {
   const [currentImage, setCurrentImage] = useState<File>();
-  const [progress, setProgress] = useState<number>(0);
+  // const [progress, setProgress] = useState<number>(0);
   const [previewImage, setPreviewImage] = useState<string>("");
   const [message, setMessage] = useState<string>("");
   // const [serverResposne, setServerResponse] = useState<tere>();
@@ -68,7 +68,7 @@ function App() {
         </form>
       </div>
         <div className="flex flex-col justify-center items-center w-2/5 h-2/5 border-2 border-white rounded-md">
-          {currentImage && progress > 0 && (
+          {/* {currentImage && progress > 0 && (
             <div className="">
               <div
                 className=""
@@ -81,7 +81,7 @@ function App() {
                 {progress}%
               </div>
             </div>
-          )}
+          )} */}
 
           {previewImage && (
             <div className="w-4/5 h-4/5">
